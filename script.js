@@ -1,92 +1,73 @@
-// Initialize AOS
+// Initialize AOS (Animate On Scroll)
 AOS.init({
-    duration: 800,
+    duration: 1000,
     once: true
 });
 
-// Custom Cursor
-const cursor = document.querySelector('.cursor');
-const cursorTrail = document.querySelector('.cursor-trail');
+// Typing effect for hero section
+const text = "Welcome to My Portfolio";
+let index = 0;
+const typingText = document.querySelector('.typing-text');
 
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    
-    setTimeout(() => {
-        cursorTrail.style.left = e.clientX + 'px';
-        cursorTrail.style.top = e.clientY + 'px';
-    }, 100);
-});
+function typeWriter() {
+    if (index < text.length) {
+        typingText.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100);
+    }
+}
 
-// Gallery Image Loading
-function createGalleryItem(imagePath) {
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    item.setAttribute('data-tilt', '');
-    
-    item.innerHTML = `
-        <div class="item-content">
-            <img src="${imagePath}" alt="Gallery Image">
-            <div class="overlay">
-                <h3>${imagePath.split('/').pop()}</h3>
-                <button class="view-project">View Project</button>
-            </div>
-        </div>
+document.addEventListener('DOMContentLoaded', typeWriter);
+
+// Dynamic project loading
+const projects = [
+    {
+        title: "Project 1",
+        description: "Description of project 1",
+        image: "assets/images/project1.jpg"
+    },
+    {
+        title: "Project 2",
+        description: "Description of project 2",
+        image: "assets/images/project2.jpg"
+    },
+    // Add more projects as needed
+];
+
+const projectGrid = document.querySelector('.project-grid');
+
+projects.forEach(project => {
+    const projectCard = document.createElement('div');
+    projectCard.className = 'project-card';
+    projectCard.innerHTML = `
+        <img src="${project.image}" alt="${project.title}">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
     `;
-    
-    return item;
-}
-
-// Load images from assets/images directory
-function loadGalleryImages() {
-    const galleryContainer = document.querySelector('.gallery-container');
-    const imageFiles = []; // Add your image filenames here
-    
-    // Loop through assets/images directory
-    for (const file of imageFiles) {
-        const imagePath = `assets/images/${file}`;
-        const galleryItem = createGalleryItem(imagePath);
-        galleryContainer.appendChild(galleryItem);
-    }
-    
-    // Initialize tilt effect
-    VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
-        max: 25,
-        speed: 400,
-        glare: true,
-        'max-glare': 0.5
-    });
-}
-
-// Modal functionality
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImage');
-const closeModal = document.querySelector('.close-modal');
-
-document.addEventListener('click', (e) => {
-    if (e.target.matches('.gallery-item img')) {
-        modal.style.display = 'block';
-        modalImg.src = e.target.src;
-    }
+    projectGrid.appendChild(projectCard);
 });
 
-closeModal.onclick = () => {
-    modal.style.display = 'none';
+// Dynamic image loading for about section
+const profileImage = new Image();
+profileImage.src = 'assets/images/profile.jpg';
+profileImage.onload = function() {
+    document.querySelector('.image-container').style.backgroundImage = `url(${this.src})`;
 };
 
-// Initialize everything when document is ready
-document.addEventListener('DOMContentLoaded', () => {
-    loadGalleryImages();
+// Smooth scrolling for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 });
 
-// Particles.js configuration
-particlesJS('particles-js', {
-    particles: {
-        number: { value: 80 },
-        color: { value: '#ffffff' },
-        shape: { type: 'circle' },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        move: { enable: true, speed: 6 }
-    }
+// Form submission handler
+document.querySelector('.contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Add your form submission logic here
+    alert('Message sent successfully!');
+    this.reset();
 });
