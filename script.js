@@ -4,64 +4,6 @@ AOS.init({
     once: true
 });
 
-// Initialize Particles.js
-particlesJS('particles-js', {
-    particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-                value_area: 800
-            }
-        },
-        color: {
-            value: '#ffffff'
-        },
-        shape: {
-            type: 'circle'
-        },
-        opacity: {
-            value: 0.5,
-            random: false
-        },
-        size: {
-            value: 3,
-            random: true
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: '#ffffff',
-            opacity: 0.4,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 6,
-            direction: 'none',
-            random: false,
-            straight: false,
-            out_mode: 'out',
-            bounce: false
-        }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: {
-            onhover: {
-                enable: true,
-                mode: 'repulse'
-            },
-            onclick: {
-                enable: true,
-                mode: 'push'
-            },
-            resize: true
-        }
-    },
-    retina_detect: true
-});
-
 // Custom Cursor
 const cursor = document.querySelector('.cursor');
 const cursorTrail = document.querySelector('.cursor-trail');
@@ -76,26 +18,75 @@ document.addEventListener('mousemove', (e) => {
     }, 100);
 });
 
-// Magnetic Effect
-const magneticElements = document.querySelectorAll('.magnetic');
+// Gallery Image Loading
+function createGalleryItem(imagePath) {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.setAttribute('data-tilt', '');
+    
+    item.innerHTML = `
+        <div class="item-content">
+            <img src="${imagePath}" alt="Gallery Image">
+            <div class="overlay">
+                <h3>${imagePath.split('/').pop()}</h3>
+                <button class="view-project">View Project</button>
+            </div>
+        </div>
+    `;
+    
+    return item;
+}
 
-magneticElements.forEach(elem => {
-    elem.addEventListener('mousemove', (e) => {
-        const position = elem.getBoundingClientRect();
-        const x = e.pageX - position.left - position.width / 2;
-        const y = e.pageY - position.top - position.height / 2;
-
-        elem.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+// Load images from assets/images directory
+function loadGalleryImages() {
+    const galleryContainer = document.querySelector('.gallery-container');
+    const imageFiles = []; // Add your image filenames here
+    
+    // Loop through assets/images directory
+    for (const file of imageFiles) {
+        const imagePath = `assets/images/${file}`;
+        const galleryItem = createGalleryItem(imagePath);
+        galleryContainer.appendChild(galleryItem);
+    }
+    
+    // Initialize tilt effect
+    VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
+        max: 25,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.5
     });
+}
 
-    elem.addEventListener('mouseout', (e) => {
-        elem.style.transform = 'translate(0px, 0px)';
-    });
+// Modal functionality
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const closeModal = document.querySelector('.close-modal');
+
+document.addEventListener('click', (e) => {
+    if (e.target.matches('.gallery-item img')) {
+        modal.style.display = 'block';
+        modalImg.src = e.target.src;
+    }
 });
 
-// Initialize Vanilla Tilt
-VanillaTilt.init(document.querySelectorAll('.gallery-item')), {
-    max: 25,
-    speed: 400,
-    glare: true,
+closeModal.onclick = () => {
+    modal.style.display = 'none';
 };
+
+// Initialize everything when document is ready
+document.addEventListener('DOMContentLoaded', () => {
+    loadGalleryImages();
+});
+
+// Particles.js configuration
+particlesJS('particles-js', {
+    particles: {
+        number: { value: 80 },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        move: { enable: true, speed: 6 }
+    }
+});

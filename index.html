@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultra Creative Portfolio</title>
+    <title>Dynamic Portfolio Gallery</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
 </head>
 <body>
     <div class="cursor"></div>
@@ -18,52 +17,34 @@
     <header>
         <nav>
             <div class="logo">
-                <h1>Portfolio</h1>
+                <h1>My Gallery</h1>
             </div>
             <div class="nav-links">
                 <a href="#home" class="magnetic">Home</a>
-                <a href="#work" class="magnetic">Work</a>
-                <a href="#about" class="magnetic">About</a>
+                <a href="#gallery" class="magnetic">Gallery</a>
                 <a href="#contact" class="magnetic">Contact</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
-            <h1 class="glitch" data-text="Creative Portfolio">Creative Portfolio</h1>
-            <p class="subtitle">Transforming ideas into digital experiences</p>
+        <section id="home">
+            <h1 class="glitch" data-text="Creative Works">Creative Works</h1>
+            <p class="subtitle">A collection of my best projects</p>
         </section>
 
         <section id="gallery">
             <div class="gallery-container">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item" data-tilt data-tilt-max="25">
-                    <div class="item-content">
-                        <img src="your-image-1.jpg" alt="Project 1">
-                        <div class="overlay">
-                            <h3>Project One</h3>
-                            <p>Interactive Design</p>
-                            <button class="view-project">View Project</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item" data-tilt data-tilt-max="25">
-                    <div class="item-content">
-                        <img src="your-image-2.jpg" alt="Project 2">
-                        <div class="overlay">
-                            <h3>Project Two</h3>
-                            <p>3D Animation</p>
-                            <button class="view-project">View Project</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add more gallery items as needed -->
+                <!-- Images will be loaded here automatically -->
             </div>
         </section>
+
+        <!-- Image Modal -->
+        <div id="imageModal" class="modal">
+            <span class="close-modal">&times;</span>
+            <img id="modalImage" src="" alt="Modal Image">
+            <div class="modal-caption"></div>
+        </div>
 
         <section id="contact">
             <h2>Get In Touch</h2>
@@ -89,8 +70,9 @@
         <div class="social-links">
             <a href="#" class="magnetic">GitHub</a>
             <a href="#" class="magnetic">LinkedIn</a>
-            <a href="#" class="magnetic">Twitter</a>
+            <a href="#" class="magnetic">Instagram</a>
         </div>
+        <p>© 2024 My Portfolio Gallery</p>
     </footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
