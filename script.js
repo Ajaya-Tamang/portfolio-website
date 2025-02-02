@@ -1,3 +1,44 @@
+// Preloader Animation
+window.addEventListener('load', () => {
+    const preloader = document.querySelector('.preloader');
+    const counter = document.querySelector('.counter');
+    let count = 0;
+
+    const updateCounter = () => {
+        if (count < 100) {
+            count++;
+            counter.textContent = count;
+            setTimeout(updateCounter, 20);
+        } else {
+            // Fade out preloader
+            gsap.to(preloader, {
+                opacity: 0,
+                duration: 1,
+                onComplete: () => {
+                    preloader.style.display = 'none';
+                    // Start page animations
+                    initializeAnimations();
+                }
+            });
+        }
+    };
+
+    updateCounter();
+});
+
+function initializeAnimations() {
+    // Your existing animation code here
+    const heroTitle = document.querySelector('.hero-content h1');
+    gsap.from(heroTitle, {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power4.out'
+    });
+    
+    // Initialize other animations
+    // ... rest of your animation code
+}
 // Initialize core functionality
 document.addEventListener('DOMContentLoaded', () => {
     // Create 3D background with Three.js
