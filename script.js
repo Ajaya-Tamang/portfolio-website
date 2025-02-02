@@ -1,50 +1,155 @@
+// Initialize core functionality
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize AOS
-    AOS.init({
-        duration: 800,
-        once: true
+    // Create 3D background with Three.js
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({
+        canvas: document.querySelector('#hero-canvas'),
+        alpha: true
     });
-
-    // Work items hover effect
-    const workItems = document.querySelectorAll('.work-item');
-    workItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            item.querySelector('.work-info').style.opacity = '1';
-            item.querySelector('.work-info').style.transform = 'translateY(0)';
+    
+    // Custom shader material for dynamic background
+    const vertexShader = `
+        varying vec2 vUv;
+        void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    `;
+    
+    const fragmentShader = `
+        varying vec2 vUv;
+        uniform float time;
+        
+        void main() {
+            vec3 color = 0.5 + 0.5 * cos(time + vUv.xyx + vec3(0,2,4));
+            gl_FragColor = vec4(color, 1.0);
+        }
+    `;
+    
+    // Initialize magnetic cursor
+    const cursor = {
+        x: 0,
+        y: 0,
+        targetX: 0,
+        targetY: 0
+    };
+    
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+    
+    document.addEventListener('mousemove', (e) => {
+        cursor.targetX = e.clientX;
+        cursor.targetY = e.clientY;
+    });
+    
+    // Smooth cursor animation
+    const animateCursor = () => {
+        cursor.x += (cursor.targetX - cursor.x) * 0.1;
+        cursor.y += (cursor.targetY - cursor.y) * 0.1;
+        
+        cursorDot.style.transform = `translate(${cursor.x}px, ${cursor.y}px)`;
+        cursorOutline.style.transform = `translate(${cursor.x - 20}px, ${cursor.y - 20}px)`;
+        
+        requestAnimationFrame(animateCursor);
+    };
+    
+    animateCursor();
+    
+    // Magnetic elements
+    const magneticElements = document.querySelectorAll('.magnetic');
+    magneticElements.forEach(elem => {
+        elem.addEventListener('mousemove', (e) => {
+            const rect = elem.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            gsap.to(elem, {
+                x: x * 0.3,
+                y: y * 0.3,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
         });
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+        
+        elem.addEventListener('mouseleave', () => {
+            gsap.to(elem, {
+                x: 0,
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out'
             });
         });
     });
-
-    // Form handling
-    const form = document.querySelector('form');
-    if(form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const button = form.querySelector('button');
-            button.textContent = 'Message Sent!';
-            form.reset();
-            setTimeout(() => {
-                button.textContent = 'Send Message';
-            }, 2000);
+    
+    // Smooth scroll with GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Reveal animations
+    gsap.utils.toArray('.reveal').forEach(elem => {
+        gsap.from(elem, {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: 'power4.out',
+            scrollTrigger: {
+                trigger: elem,
+                start: 'top 80%',
+                end: 'top 20%',
+                toggleActions: 'play none none reverse'
+            }
         });
-    }
-
-    // Navigation scroll effect
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.style.background = 'rgba(10, 10, 10, 0.95)';
-        } else {
-            nav.style.background = 'transparent';
-        }
     });
+    
+    // Work grid animations
+    const workItems = gsap.utils.toArray('.work-item');
+    workItems.forEach(item => {
+        const img = item.querySelector('img');
+        
+        gsap.to(img, {
+            scale: 1,
+            duration: 1,
+            ease: 'power2.inOut',
+            scrollTrigger: {
+                trigger: item,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+    });
+    
+    // Menu toggle animation
+    const menuButton = document.querySelector('.menu-button');
+    const fullscreenMenu = document.querySelector('.fullscreen-menu');
+    let menuOpen = false;
+    
+    menuButton.addEventListener('click', () => {
+        if (!menuOpen) {
+            fullscreenMenu.classList.add('active');
+            gsap.from('.menu-item', {
+                y: 100,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power4.out'
+            });
+        } else {
+            fullscreenMenu.classList.remove('active');
+        }
+        menuOpen = !menuOpen;
+    });
+    
+    // Initialize smooth scroll
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    });
+    
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
 });
