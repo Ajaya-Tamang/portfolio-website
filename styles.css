@@ -51,11 +51,6 @@ body {
     100% { stroke-dashoffset: 0; }
 }
 
-/* Cursor */
-.cursor {
-    mix-blend-mode: difference;
-    pointer-events: none;
-}
 /* Navigation */
 .nav-wrapper {
     position: fixed;
@@ -80,7 +75,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
 /* Fullscreen Menu */
@@ -202,7 +196,6 @@ button {
     border: none;
     padding: 1rem 2rem;
     border-radius: 0.5rem;
-    cursor: pointer;
     transition: transform 0.3s var(--transition);
 }
 
@@ -259,7 +252,6 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     gap: 6px;
-    cursor: pointer;
 }
 
 .menu-icon span {
@@ -317,7 +309,6 @@ button:hover {
     border-radius: 12px;
     overflow: hidden;
     aspect-ratio: 16/9;
-    cursor: pointer;
 }
 
 .work-item img {
