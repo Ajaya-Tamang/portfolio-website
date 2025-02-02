@@ -57,33 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animate();
 
-   // Simplified and more reliable cursor effect
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
-
-window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
-
-    // Direct positioning for smoother movement
-    cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
-    cursorOutline.style.transform = `translate(${posX - 20}px, ${posY - 20}px)`;
-});
-
-// Add cursor interactions
-document.querySelectorAll('a, button').forEach(elem => {
-    elem.addEventListener('mouseenter', () => {
-        cursorDot.style.transform = 'scale(2)';
-        cursorOutline.style.transform = 'scale(1.5)';
-    });
-    
-    elem.addEventListener('mouseleave', () => {
-        cursorDot.style.transform = 'scale(1)';
-        cursorOutline.style.transform = 'scale(1)';
-    });
-});
-
-
     // Smooth scroll initialization
     const lenis = new Lenis({
         duration: 1.2,
