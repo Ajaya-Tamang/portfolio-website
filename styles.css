@@ -445,5 +445,14 @@ button:hover {
     transform: scale(1.2);
 }
 .work-item::before {
-    background: rgba(0, 123, 255, 0.5); /* Cool blue overlay */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(41, 128, 185, 0.3); /* Soft blue */
+    /* Or try these alternatives: */
+    /* background: rgba(52, 152, 219, 0.3); */ /* Brighter blue */
+    /* background: rgba(30, 144, 255, 0.3); */ /* Dodger blue */
+    /* background: rgba(0, 119, 190, 0.3); */ /* Deep blue */
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
