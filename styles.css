@@ -444,3 +444,6 @@ button:hover {
 .modal-next:hover {
     transform: scale(1.2);
 }
+.work-item::before {
+    background: rgba(0, 123, 255, 0.5); /* Cool blue overlay */
+}
