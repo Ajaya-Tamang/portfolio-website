@@ -453,7 +453,7 @@ button:hover {
     /* Or try these alternatives: */
     /* background: rgba(52, 152, 219, 0.3); */ /* Brighter blue */
     /* background: rgba(30, 144, 255, 0.3); */ /* Dodger blue */
-    /* background: rgba(0, 119, 190, 0.3); */ /* Deep blue */
+    background: rgba(0, 119, 190, 0.3); */ /* Deep blue
     opacity: 0;
     transition: opacity 0.5s ease;
 }
