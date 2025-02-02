@@ -354,3 +354,93 @@ button:hover {
         grid-template-columns: 1fr;
     }
 }
+/* Enhanced Work Item Styles */
+.work-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    cursor: pointer;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.work-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 163, 0.2);
+}
+
+.work-item:hover::before {
+    opacity: 0.2;
+}
+
+/* Image Modal Styles */
+.image-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.image-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.modal-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.modal-close,
+.modal-prev,
+.modal-next {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.modal-close {
+    top: 20px;
+    right: 20px;
+}
+
+.modal-prev {
+    left: 20px;
+}
+
+.modal-next {
+    right: 20px;
+}
+
+.modal-close:hover,
+.modal-prev:hover,
+.modal-next:hover {
+    transform: scale(1.2);
+}
