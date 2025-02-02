@@ -1,4 +1,3 @@
-// Initialize core functionality
 document.addEventListener('DOMContentLoaded', () => {
     // Modern entrance animation
     const preloader = document.querySelector('.preloader');
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fragmentShader: `
             uniform float time;
             varying vec2 vUv;
-            
             void main() {
                 vec3 color = 0.5 + 0.5 * cos(time + vUv.xyx + vec3(0,2,4));
                 gl_FragColor = vec4(color, 1.0);
@@ -49,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    // Animation loop
     function animate() {
         requestAnimationFrame(animate);
         material.uniforms.time.value += 0.01;
@@ -57,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animate();
 
-    // Smooth scroll initialization
+    // Smooth scroll
     const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -70,70 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(raf);
 
-    // GSAP Animations
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero animations
-    gsap.from('.hero-content h1', {
-        y: 100,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power4.out"
-    });
-
-    gsap.from('.hero-content p', {
-        y: 50,
-        opacity: 0,
-        duration: 1.5,
-        delay: 0.3,
-        ease: "power4.out"
-    });
-
-    // Work grid animations
-    gsap.utils.toArray('.work-item').forEach(item => {
-        gsap.from(item, {
-            y: 100,
-            opacity: 0,
-            duration: 1,
-            scrollTrigger: {
-                trigger: item,
-                start: "top bottom",
-                end: "top center",
-                scrub: 1
-            }
-        });
-    });
-
-    // Menu toggle functionality
-    const menuButton = document.querySelector('.menu-button');
-    const fullscreenMenu = document.querySelector('.fullscreen-menu');
-    let menuOpen = false;
-
-    menuButton?.addEventListener('click', () => {
-        menuOpen = !menuOpen;
-        if (menuOpen) {
-            fullscreenMenu.classList.add('active');
-            gsap.from('.menu-item', {
-                y: 100,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "power4.out"
-            });
-        } else {
-            fullscreenMenu.classList.remove('active');
-        }
-    });
-
-    // Window resize handler
-    window.addEventListener('resize', () => {
-        // Update camera
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-    // Add this to your scripts.js
-function initializeGallery() {
+    // Image gallery functionality
     const workItems = document.querySelectorAll('.work-item');
     const modal = document.querySelector('.image-modal');
     const modalImg = modal.querySelector('img');
@@ -170,14 +104,12 @@ function initializeGallery() {
         updateModal();
     });
 
-    // Close on outside click
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.remove('active');
         }
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (!modal.classList.contains('active')) return;
         
@@ -185,9 +117,11 @@ function initializeGallery() {
         if (e.key === 'ArrowLeft') prevBtn.click();
         if (e.key === 'ArrowRight') nextBtn.click();
     });
-}
 
-// Call this function in your DOMContentLoaded event
-initializeGallery();
-
-})
+    // Window resize handler
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+});
