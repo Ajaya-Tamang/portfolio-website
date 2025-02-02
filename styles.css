@@ -387,7 +387,8 @@ button:hover {
 .image-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
+/*     background: rgba(0, 0, 0, 0.9); */
+    background: rgba(41, 128, 185, 0.3); /* Soft blue */
     display: flex;
     align-items: center;
     justify-content: center;
