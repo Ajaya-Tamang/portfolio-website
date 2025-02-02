@@ -1,178 +1,37 @@
-// Initialize Locomotive Scroll
-const scroll = new LocomotiveScroll({
-    el: document.querySelector('[data-scroll-container]'),
-    smooth: true,
-    lerp: 0.05,
-    multiplier: 0.5
+// Initialize AOS animations
+AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100
 });
 
-// Loader Animation
-// Modified loader code
-window.addEventListener('DOMContentLoaded', () => {
-    const loader = document.querySelector('.loader');
-    const loaderText = document.querySelectorAll('.loader-text span');
-
-    const tl = gsap.timeline({
-        onComplete: () => {
-            loader.style.display = 'none'; // This will remove the loader completely
-            // Initialize the rest of the animations
-            initializeAnimations();
-        }
-    });
-
-    tl.to(loaderText, {
-        y: -100,
-        stagger: 0.1,
-        duration: 1,
-        ease: 'power4.out'
-    })
-    .to(loader, {
-        y: '-100%',
-        duration: 1.5,
-        ease: 'power4.inOut'
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
     });
 });
 
-function initializeAnimations() {
-    // Initialize Locomotive Scroll
-    const scroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]'),
-        smooth: true,
-        lerp: 0.05
+// Form handling
+const form = document.querySelector('form');
+if(form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Message sent successfully!');
+        form.reset();
     });
-
-    // Refresh scroll after all content is loaded
-    scroll.update();
 }
 
-
-// Menu Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const menuOverlay = document.querySelector('.menu-overlay');
-const menuLinks = document.querySelectorAll('.menu-link');
-
-menuToggle.addEventListener('click', () => {
-    document.body.classList.toggle('menu-open');
-    
-    gsap.to(menuOverlay, {
-        clipPath: document.body.classList.contains('menu-open') 
-            ? 'circle(100% at 50% 50%)' 
-            : 'circle(0% at 50% 50%)',
-        duration: 1,
-        ease: 'power4.inOut'
-    });
-
-    gsap.to(menuLinks, {
-        y: document.body.classList.contains('menu-open') ? 0 : 100,
-        opacity: document.body.classList.contains('menu-open') ? 1 : 0,
-        stagger: 0.1,
-        duration: 0.5,
-        ease: 'power4.out'
-    });
-});
-
-// Magnetic Button Effect
-document.querySelectorAll('.view-project').forEach(button => {
-    button.addEventListener('mousemove', (e) => {
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        gsap.to(button, {
-            x: (x - rect.width / 2) / rect.width * 50,
-            y: (y - rect.height / 2) / rect.height * 50,
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    });
-
-    button.addEventListener('mouseleave', () => {
-        gsap.to(button, {
-            x: 0,
-            y: 0,
-            duration: 0.5,
-            ease: 'elastic.out(1, 0.3)'
-        });
-    });
-});
-
-// Smooth Image Reveal
-const workItems = document.querySelectorAll('.work-item');
-
-workItems.forEach(item => {
-    const image = item.querySelector('img');
-    
-    scroll.on('scroll', (obj) => {
-        const rect = item.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (inView) {
-            gsap.to(image, {
-                scale: 1,
-                duration: 1.5,
-                ease: 'power3.out'
-            });
-        }
-    });
-});
-
-// Text Split Animation
-const splitText = (element) => {
-    const text = element.textContent;
-    const chars = text.split('');
-    element.textContent = '';
-    
-    chars.forEach(char => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        element.appendChild(span);
-    });
-    
-    return element;
-};
-
-document.querySelectorAll('.hero-title span').forEach(text => {
-    const chars = splitText(text).querySelectorAll('span');
-    
-    gsap.from(chars, {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.02,
-        ease: 'power4.out',
-        scrollTrigger: {
-            trigger: text,
-            start: 'top 80%'
-        }
-    });
-});
-
-// Form Animation
-const form = document.querySelector('.contact-form');
-const inputs = form.querySelectorAll('input, textarea');
-
-inputs.forEach(input => {
-    input.addEventListener('focus', () => {
-        input.parentElement.classList.add('focused');
-    });
-    
-    input.addEventListener('blur', () => {
-        if (!input.value) {
-            input.parentElement.classList.remove('focused');
-        }
-    });
-});
-
-// Parallax Images
-document.querySelectorAll('[data-speed]').forEach(image => {
-    scroll.on('scroll', (obj) => {
-        const speed = image.dataset.speed;
-        const yPos = -(obj.scroll.y * speed);
-        
-        gsap.to(image, {
-            y: yPos,
-            duration: 0.5,
-            ease: 'none'
-        });
-    });
+// Navbar scroll effect
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        nav.style.background = 'rgba(10, 10, 10, 0.95)';
+    } else {
+        nav.style.background = 'transparent';
+    }
 });
