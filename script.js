@@ -1,37 +1,50 @@
-// Initialize AOS animations
-AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100
-});
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true
+    });
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    // Work items hover effect
+    const workItems = document.querySelectorAll('.work-item');
+    workItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.querySelector('.work-info').style.opacity = '1';
+            item.querySelector('.work-info').style.transform = 'translateY(0)';
         });
     });
-});
 
-// Form handling
-const form = document.querySelector('form');
-if(form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Add your form submission logic here
-        alert('Message sent successfully!');
-        form.reset();
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     });
-}
 
-// Navbar scroll effect
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        nav.style.background = 'rgba(10, 10, 10, 0.95)';
-    } else {
-        nav.style.background = 'transparent';
+    // Form handling
+    const form = document.querySelector('form');
+    if(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const button = form.querySelector('button');
+            button.textContent = 'Message Sent!';
+            form.reset();
+            setTimeout(() => {
+                button.textContent = 'Send Message';
+            }, 2000);
+        });
     }
+
+    // Navigation scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(10, 10, 10, 0.95)';
+        } else {
+            nav.style.background = 'transparent';
+        }
+    });
 });
