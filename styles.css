@@ -169,3 +169,78 @@ body {
     gap: 2rem;
     margin-top: 4rem;
 }
+
+.work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    transition: transform 1s var(--transition);
+}
+
+.work-info {
+    position: absolute;
+    inset: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s var(--transition);
+}
+
+.work-item:hover .work-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* About & Contact Sections */
+.about-section,
+.contact-section {
+    padding: 10rem 0;
+}
+
+form {
+    display: grid;
+    gap: 2rem;
+    max-width: 600px;
+}
+
+input,
+textarea {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    padding: 1rem;
+    color: var(--secondary);
+    border-radius: 0.5rem;
+}
+
+button {
+    background: var(--accent);
+    color: var(--primary);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.3s var(--transition);
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .menu-item {
+        font-size: 10vw;
+    }
+}
