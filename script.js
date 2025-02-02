@@ -57,34 +57,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animate();
 
-    // Magnetic cursor effect
-    const cursor = {
-        x: 0,
-        y: 0,
-        targetX: 0,
-        targetY: 0
-    };
+   // Simplified and more reliable cursor effect
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
 
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
+window.addEventListener('mousemove', (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.targetX = e.clientX;
-        cursor.targetY = e.clientY;
+    // Direct positioning for smoother movement
+    cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
+    cursorOutline.style.transform = `translate(${posX - 20}px, ${posY - 20}px)`;
+});
+
+// Add cursor interactions
+document.querySelectorAll('a, button').forEach(elem => {
+    elem.addEventListener('mouseenter', () => {
+        cursorDot.style.transform = 'scale(2)';
+        cursorOutline.style.transform = 'scale(1.5)';
     });
+    
+    elem.addEventListener('mouseleave', () => {
+        cursorDot.style.transform = 'scale(1)';
+        cursorOutline.style.transform = 'scale(1)';
+    });
+});
 
-    function animateCursor() {
-        cursor.x += (cursor.targetX - cursor.x) * 0.1;
-        cursor.y += (cursor.targetY - cursor.y) * 0.1;
-
-        if (cursorDot && cursorOutline) {
-            cursorDot.style.transform = `translate(${cursor.x}px, ${cursor.y}px)`;
-            cursorOutline.style.transform = `translate(${cursor.x - 20}px, ${cursor.y - 20}px)`;
-        }
-
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
 
     // Smooth scroll initialization
     const lenis = new Lenis({
