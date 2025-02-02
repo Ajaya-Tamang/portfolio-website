@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next-Gen 3D Portfolio</title>
+    <title>Next-Gen Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,500&display=swap" rel="stylesheet">
 </head>
 <body>
-
-   <!-- Updated Navigation HTML -->
-<nav class="nav-wrapper">
-    <div class="nav-brand">
-        <a href="#" class="logo">PORTFOLIO</a>
-    </div>
-    <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </div>
-    <div class="nav-menu">
-        <div class="menu-button">
-            <div class="menu-icon">
-                <span></span>
-                <span></span>
-            </div>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" />
+            </svg>
         </div>
     </div>
-</nav>
+
+    <!-- Navigation -->
+    <nav class="nav-wrapper">
+        <div class="nav-brand">
+            <a href="#" class="logo">PORTFOLIO</a>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-content">
-            <h1>Creative<br>3D Artist</h1>
+            <h1>Creative<br>Developer</h1>
             <p>Crafting Digital Experiences</p>
         </div>
     </section>
@@ -45,59 +45,10 @@
             <h2>Selected Works</h2>
             <div class="work-grid">
                 <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
+                    <img src="path/to/your/work1.jpg" alt="Project 1">
                     <div class="work-info">
                         <h3>Project One</h3>
-                        <p>3D Visualization</p>
-                    </div>
-                </div>
-                 <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
-                    <div class="work-info">
-                        <h3>Project One</h3>
-                        <p>3D Visualization</p>
-                    </div>
-                </div>
-                 <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
-                    <div class="work-info">
-                        <h3>Project One</h3>
-                        <p>3D Visualization</p>
-                    </div>
-                </div>
-                 <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
-                    <div class="work-info">
-                        <h3>Project One</h3>
-                        <p>3D Visualization</p>
-                    </div>
-                </div>
-                <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
-                    <div class="work-info">
-                        <h3>Project One</h3>
-                        <p>3D Visualization</p>
-                    </div>
-                </div>
-                 <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
-                    <div class="work-info">
-                        <h3>Project One</h3>
-                        <p>3D Visualization</p>
-                    </div>
-                </div>
-                 <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
-                    <div class="work-info">
-                        <h3>Project One</h3>
-                        <p>3D Visualization</p>
-                    </div>
-                </div>
-                 <div class="work-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
-                    <div class="work-info">
-                        <h3>Project One</h3>
-                        <p>3D Visualization</p>
+                        <p>Web Development</p>
                     </div>
                 </div>
                 <!-- Add more work items as needed -->
@@ -105,30 +56,15 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <h2>About Me</h2>
-                <p>Your compelling story here...</p>
-            </div>
+    <!-- Image Modal -->
+    <div class="image-modal">
+        <button class="modal-close">×</button>
+        <button class="modal-prev">←</button>
+        <button class="modal-next">→</button>
+        <div class="modal-content">
+            <img src="" alt="Project Image">
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2>Let's Connect</h2>
-            <div class="contact-content">
-                <form>
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -136,16 +72,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
     <script src="scripts.js"></script>
-
-    <!-- Add this modal HTML at the end of your body tag -->
-<div class="image-modal">
-    <button class="modal-close">×</button>
-    <button class="modal-prev">←</button>
-    <button class="modal-next">→</button>
-    <div class="modal-content">
-        <img src="" alt="Project Image">
-    </div>
-</div>
-    
 </body>
 </html>
