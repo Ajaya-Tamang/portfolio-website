@@ -5,30 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next-Gen 3D Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
-    <!-- Add Three.js for 3D effects -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Add GSAP for smooth animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Dynamic Preloader -->
+    <!-- Preloader -->
     <div class="preloader">
-        <div class="counter">0</div>
+        <div class="preloader-content">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" />
+            </svg>
+        </div>
     </div>
 
-    <!-- Magnetic Cursor -->
+    <!-- Cursor -->
     <div class="cursor">
         <div class="cursor-dot"></div>
         <div class="cursor-outline"></div>
     </div>
 
-    <!-- Dynamic Navigation -->
+    <!-- Navigation -->
     <nav class="nav-wrapper">
         <div class="nav-brand">
-            <div class="logo-container">
-                <!-- Add your logo SVG here -->
-            </div>
+            <a href="#" class="logo">PORTFOLIO</a>
         </div>
         <div class="nav-menu">
             <div class="menu-button">
@@ -50,51 +48,62 @@
         </div>
     </div>
 
-    <!-- Hero Section with 3D Background -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-content">
-            <h1 class="glitch-text">3D Artist</h1>
-            <p class="reveal-text">Creating Digital Universes</p>
+            <h1>Creative<br>3D Artist</h1>
+            <p>Crafting Digital Experiences</p>
         </div>
     </section>
 
-    <!-- Dynamic Work Grid -->
+    <!-- Work Section -->
     <section id="work" class="work-section">
-        <div class="work-grid">
-            <!-- Dynamic work items will be added here -->
-        </div>
-    </section>
-
-    <!-- Interactive About Section -->
-    <section id="about" class="about-section">
-        <div class="about-content">
-            <div class="about-text">
-                <h2 class="section-title">About</h2>
-                <div class="text-reveal">
-                    <!-- Your bio here -->
+        <div class="container">
+            <h2>Selected Works</h2>
+            <div class="work-grid">
+                <div class="work-item">
+                    <img src="path/to/your/work1.jpg" alt="Project 1">
+                    <div class="work-info">
+                        <h3>Project One</h3>
+                        <p>3D Visualization</p>
+                    </div>
                 </div>
-            </div>
-            <div class="skills-container">
-                <!-- Dynamic skill bars -->
+                <!-- Add more work items as needed -->
             </div>
         </div>
     </section>
 
-    <!-- Contact Section with 3D Form -->
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p>Your compelling story here...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section id="contact" class="contact-section">
-        <div class="contact-form-3d">
-            <!-- 3D animated contact form -->
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <div class="contact-content">
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
 
-        <!-- Essential Libraries -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
-    
-    <!-- Custom Scripts -->
     <script src="scripts.js"></script>
 </body>
 </html>
