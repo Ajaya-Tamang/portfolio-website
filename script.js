@@ -7,24 +7,44 @@ const scroll = new LocomotiveScroll({
 });
 
 // Loader Animation
-window.addEventListener('load', () => {
+// Modified loader code
+window.addEventListener('DOMContentLoaded', () => {
     const loader = document.querySelector('.loader');
     const loaderText = document.querySelectorAll('.loader-text span');
 
-    gsap.to(loaderText, {
+    const tl = gsap.timeline({
+        onComplete: () => {
+            loader.style.display = 'none'; // This will remove the loader completely
+            // Initialize the rest of the animations
+            initializeAnimations();
+        }
+    });
+
+    tl.to(loaderText, {
         y: -100,
         stagger: 0.1,
         duration: 1,
         ease: 'power4.out'
-    });
-
-    gsap.to(loader, {
+    })
+    .to(loader, {
         y: '-100%',
         duration: 1.5,
-        delay: 1,
         ease: 'power4.inOut'
     });
 });
+
+function initializeAnimations() {
+    // Initialize Locomotive Scroll
+    const scroll = new LocomotiveScroll({
+        el: document.querySelector('[data-scroll-container]'),
+        smooth: true,
+        lerp: 0.05
+    });
+
+    // Refresh scroll after all content is loaded
+    scroll.update();
+}
+
 
 // Menu Toggle
 const menuToggle = document.querySelector('.menu-toggle');
