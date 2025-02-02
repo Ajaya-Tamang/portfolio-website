@@ -17,7 +17,6 @@ body {
     color: var(--secondary);
     font-family: 'Clash Display', sans-serif;
     overflow-x: hidden;
-    cursor: none;
 }
 
 .container {
