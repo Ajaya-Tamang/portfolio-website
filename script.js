@@ -132,4 +132,62 @@ document.addEventListener('DOMContentLoaded', () => {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
+    // Add this to your scripts.js
+function initializeGallery() {
+    const workItems = document.querySelectorAll('.work-item');
+    const modal = document.querySelector('.image-modal');
+    const modalImg = modal.querySelector('img');
+    const closeBtn = modal.querySelector('.modal-close');
+    const prevBtn = modal.querySelector('.modal-prev');
+    const nextBtn = modal.querySelector('.modal-next');
+    let currentIndex = 0;
+
+    workItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentIndex = index;
+            updateModal();
+            modal.classList.add('active');
+        });
+    });
+
+    function updateModal() {
+        const currentItem = workItems[currentIndex];
+        const imgSrc = currentItem.querySelector('img').src;
+        modalImg.src = imgSrc;
+    }
+
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + workItems.length) % workItems.length;
+        updateModal();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % workItems.length;
+        updateModal();
+    });
+
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') modal.classList.remove('active');
+        if (e.key === 'ArrowLeft') prevBtn.click();
+        if (e.key === 'ArrowRight') nextBtn.click();
+    });
+}
+
+// Call this function in your DOMContentLoaded event
+initializeGallery();
+
 })
