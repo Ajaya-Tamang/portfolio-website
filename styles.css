@@ -293,4 +293,39 @@ button:hover {
     background: var(--secondary);
     transition: transform 0.3s ease;
 }
+/* Updated Navigation CSS */
+.nav-wrapper {
+    position: fixed;
+    width: 100%;
+    padding: 2rem;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Mobile menu will appear below 768px */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+}
 
