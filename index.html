@@ -27,21 +27,38 @@
         <section id="gallery" class="gallery">
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Project 1">
+                    <img src="images/image1.jpg" alt="Project 1">
                     <div class="overlay">
                         <h3>Project 1</h3>
                     </div>
                 </div>
-                <!-- Add more gallery items as needed -->
+                <div class="gallery-item">
+                    <img src="images/image2.jpg" alt="Project 2">
+                    <div class="overlay">
+                        <h3>Project 2</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/image3.jpg" alt="Project 3">
+                    <div class="overlay">
+                        <h3>Project 3</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/image4.jpg" alt="Project 4">
+                    <div class="overlay">
+                        <h3>Project 4</h3>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="contact">
             <h2>Get in Touch</h2>
             <form>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <textarea placeholder="Message"></textarea>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
                 <button type="submit">Send</button>
             </form>
         </section>
@@ -50,6 +67,11 @@
     <footer>
         <p>&copy; 2024 My Portfolio. All rights reserved.</p>
     </footer>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
     <script src="script.js"></script>
 </body>
