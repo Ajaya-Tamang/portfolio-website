@@ -3,54 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio showcasing stunning 3D renders and digital art">
-    <title>3D Portfolio | Creative Works</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Portfolio</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav>
+            <h1>My Portfolio</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Creative 3D Renders</h1>
-            <p>Bringing imagination to life</p>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="hero">
+            <h2>Welcome to My Portfolio</h2>
+            <p>Showcasing my best photography work</p>
+        </section>
 
-    <section id="gallery" class="gallery">
-        <h2>Gallery</h2>
-        <div class="gallery-grid">
-            <!-- Gallery items will be dynamically loaded -->
-        </div>
-    </section>
+        <section id="gallery" class="gallery">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/image1.jpg" alt="Project 1">
+                    <div class="overlay">
+                        <h3>Project 1</h3>
+                    </div>
+                </div>
+                <!-- Add more gallery items as needed -->
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea placeholder="Message"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3>Contact</h3>
-                <p>email@example.com</p>
-            </div>
-            <div class="social-links">
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">LinkedIn</a>
-                <a href="#" class="social-link">Twitter</a>
-            </div>
-        </div>
+        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
     </footer>
 
-    <div id="chatbot" class="chatbot-container">
-        <button class="chatbot-toggle">Chat</button>
-    </div>
-
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
