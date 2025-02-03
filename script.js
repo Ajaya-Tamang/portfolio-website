@@ -1,90 +1,116 @@
-// Smooth scrolling
+// Custom Cursor
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
+    cursorFollower.style.transform = `translate(${e.clientX - 15}px, ${e.clientY - 15}px)`;
+});
+
+// Smooth Scrolling with Enhanced Animation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({
             behavior: 'smooth'
         });
     });
 });
 
-// Enhanced Lightbox functionality
+// Enhanced Scroll Reveal
+const revealElements = document.querySelectorAll('.reveal');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.8;
+
+    revealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < triggerBottom) {
+            element.classList.add('active');
+        }
+    });
+
+    galleryItems.forEach((item, index) => {
+        const itemTop = item.getBoundingClientRect().top;
+        if (itemTop < triggerBottom) {
+            setTimeout(() => {
+                item.classList.add('active');
+            }, index * 100); // Staggered animation
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Enhanced Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const close = document.querySelector('.close');
 
-// Add loading animation
-function showLoading(img) {
-    img.style.opacity = '0';
-    img.onload = () => {
-        img.style.opacity = '1';
-    };
-}
-
-// Gallery image click handler
 document.querySelectorAll('.gallery-item img').forEach(image => {
     image.addEventListener('click', () => {
-        lightbox.style.display = 'block';
+        lightbox.classList.add('active');
         lightboxImg.src = image.src;
-        showLoading(lightboxImg);
+        document.body.style.overflow = 'hidden';
     });
 });
 
-// Close handlers
-close.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-});
+const closeLightbox = () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+};
 
+close.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-    }
+    if (e.target === lightbox) closeLightbox();
 });
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        lightbox.style.display = 'none';
-    }
+    if (e.key === 'Escape') closeLightbox();
 });
 
-// Theme toggle functionality
-const themeToggle = document.querySelector('.theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
-
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    themeIcon.classList.toggle('fa-sun');
-    themeIcon.classList.toggle('fa-moon');
-});
-
-// Form submission animation
+// Form Animation
 const form = document.querySelector('form');
+const inputs = document.querySelectorAll('.input-animate');
+
+inputs.forEach(input => {
+    input.addEventListener('focus', () => {
+        input.parentElement.classList.add('active');
+    });
+
+    input.addEventListener('blur', () => {
+        if (input.value === '') {
+            input.parentElement.classList.remove('active');
+        }
+    });
+});
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const button = form.querySelector('button');
-    button.innerHTML = 'Sending...';
+    const originalText = button.innerHTML;
+    
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    
     setTimeout(() => {
-        button.innerHTML = 'Message Sent!';
+        button.innerHTML = '<i class="fas fa-check"></i> Sent!';
         form.reset();
+        
         setTimeout(() => {
-            button.innerHTML = 'Send Message';
+            button.innerHTML = originalText;
         }, 2000);
     }, 1500);
 });
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.gallery-item, .section-title').forEach(el => {
-    observer.observe(el);
-});
+// Page Loading Animation
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.loading');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500);
+    }
