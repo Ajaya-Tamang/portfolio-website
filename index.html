@@ -3,73 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Portfolio | Dark Mode</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="dark-mode">
     <header>
         <nav>
-            <h1>My Portfolio</h1>
-            <ul>
+            <div class="logo">
+                <h1>Portfolio</h1>
+            </div>
+            <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section id="home" class="hero">
-            <h2>Welcome to My Portfolio</h2>
-            <p>Showcasing my best photography work</p>
+            <h2>Creative Portfolio</h2>
+            <p class="subtitle">Capturing moments in pixels</p>
+            <a href="#gallery" class="cta-button">View Gallery</a>
         </section>
 
         <section id="gallery" class="gallery">
+            <h2 class="section-title">Gallery</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="images/image1.jpg" alt="Project 1">
                     <div class="overlay">
                         <h3>Project 1</h3>
+                        <p>Click to view</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/image2.jpg" alt="Project 2">
-                    <div class="overlay">
-                        <h3>Project 2</h3>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/image3.jpg" alt="Project 3">
-                    <div class="overlay">
-                        <h3>Project 3</h3>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/image4.jpg" alt="Project 4">
-                    <div class="overlay">
-                        <h3>Project 4</h3>
-                    </div>
-                </div>
+                <!-- Repeat gallery-item for more images -->
             </div>
         </section>
 
         <section id="contact">
-            <h2>Get in Touch</h2>
-            <form>
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Message" required></textarea>
-                <button type="submit">Send</button>
+            <h2 class="section-title">Get in Touch</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2024 Portfolio. All rights reserved.</p>
+        </div>
     </footer>
 
     <div class="lightbox" id="lightbox">
-        <span class="close">&times;</span>
+        <span class="close"><i class="fas fa-times"></i></span>
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
