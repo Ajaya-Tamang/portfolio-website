@@ -3,111 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Dark Mode</title>
+    <title>Dynamic Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body class="dark-mode">
-    <header>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="animate__animated animate__fadeInDown">
         <nav>
             <div class="logo">
                 <h1>Portfolio</h1>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li class="theme-toggle">
                     <i class="fas fa-moon"></i>
                 </li>
             </ul>
+            <div class="menu-btn">
+                <div class="menu-btn__burger"></div>
+            </div>
         </nav>
     </header>
 
     <main>
         <section id="home" class="hero">
-            <h2>Creative Portfolio</h2>
-            <p class="subtitle">Capturing moments in pixels</p>
-            <a href="#gallery" class="cta-button">View Gallery</a>
+            <h2 class="animate__animated animate__fadeIn">Creative Portfolio</h2>
+            <p class="subtitle animate__animated animate__fadeIn animate__delay-1s">Capturing moments in pixels</p>
+            <a href="#gallery" class="cta-button animate__animated animate__fadeIn animate__delay-2s">
+                Explore Gallery 
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
 
         <section id="gallery" class="gallery">
-            <h2 class="section-title">Gallery</h2>
+            <h2 class="section-title reveal">Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
+                <div class="gallery-item reveal">
                     <img src="images/image1.jpg" alt="Project 1">
                     <div class="overlay">
                         <h3>Project 1</h3>
                         <p>Click to view</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/image2.jpg" alt="Project 1">
-                    <div class="overlay">
-                        <h3>Project 1</h3>
-                        <p>Click to view</p>
-                    </div>
-                </div><div class="gallery-item">
-                    <img src="images/image3.jpg" alt="Project 1">
-                    <div class="overlay">
-                        <h3>Project 1</h3>
-                        <p>Click to view</p>
-                    </div>
-                </div><div class="gallery-item">
-                    <img src="images/image1.jpg" alt="Project 1">
-                    <div class="overlay">
-                        <h3>Project 1</h3>
-                        <p>Click to view</p>
-                    </div>
-                </div> <div class="gallery-item">
-                    <img src="images/image2.jpg" alt="Project 1">
-                    <div class="overlay">
-                        <h3>Project 1</h3>
-                        <p>Click to view</p>
-                    </div>
-                </div><div class="gallery-item">
-                    <img src="images/image3.jpg" alt="Project 1">
-                    <div class="overlay">
-                        <h3>Project 1</h3>
-                        <p>Click to view</p>
-                    </div>
-                </div><div class="gallery-item">
-                    <img src="images/image1.jpg" alt="Project 1">
-                    <div class="overlay">
-                        <h3>Project 1</h3>
-                        <p>Click to view</p>
-                    </div>
-                </div>
-                <!-- Repeat gallery-item for more images -->
+                <!-- Add more gallery items as needed -->
             </div>
         </section>
 
         <section id="contact">
-            <h2 class="section-title">Get in Touch</h2>
-            <form class="contact-form">
+            <h2 class="section-title reveal">Get in Touch</h2>
+            <form class="contact-form reveal">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" required class="input-animate">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" required class="input-animate">
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" required></textarea>
+                    <textarea id="message" required class="input-animate"></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </section>
     </main>
 
-    <footer>
+    <footer class="reveal">
         <div class="footer-content">
             <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
             </div>
             <p>&copy; 2024 Portfolio. All rights reserved.</p>
         </div>
@@ -116,6 +92,7 @@
     <div class="lightbox" id="lightbox">
         <span class="close"><i class="fas fa-times"></i></span>
         <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-caption"></div>
     </div>
 
     <script src="script.js"></script>
